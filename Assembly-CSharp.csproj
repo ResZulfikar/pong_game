@@ -65,6 +65,7 @@
     <Compile Include="Assets\KananMovement.cs" />
     <Compile Include="Assets\KiriMovement.cs" />
     <Compile Include="Assets\ballscript.cs" />
+    <Compile Include="Assets\timerScript.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/LENOVO/Documents/Repos/Unity2D/P1_kelas_game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
