@@ -20,12 +20,13 @@ public class ballscript : MonoBehaviour
         //GetComponent<Rigidbody2D>().velocity = new Vector2(1, -1) * speed; 
 
         //karakteristik objek reference
+        objek1.GetComponent<Transform>().position = new Vector2(0, 0);
         objek1.velocity = new Vector2(-1, -1) * speed;
-
         anim.SetBool("IsMove", true);
     }
 
-    // Update is called once per frame
+    //arah animasi api mengikuti pergerakan bola, karena bola merupakan parent api
+    //yg dibuah di component -> transform bagian scale
     void FixedUpdate()
     {
        if(objek1.velocity.x > 0)
@@ -42,7 +43,18 @@ public class ballscript : MonoBehaviour
     {
         if (other.collider.name == "WallRight" || other.collider.name == "WallLeft")
         {
-            GetComponent<Transform>().position = new Vector2(0, 0);
+            //menjeda bola setelah terkena tembok
+            StartCoroutine(jeda());
         }
+    }
+
+    IEnumerator jeda()
+    {
+        objek1.velocity = Vector2.zero;
+        anim.SetBool("IsMove", false);
+        objek1.GetComponent<Transform>().position = Vector2.zero;
+        yield return new WaitForSeconds(1);
+        objek1.velocity = new Vector2(-1, -1) * speed;
+        anim.SetBool("IsMove", true);
     }
 }
