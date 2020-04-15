@@ -12,6 +12,8 @@ public class ballscript : MonoBehaviour
 
     public Animator anim;
 
+    public GameObject masterScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class ballscript : MonoBehaviour
     {
         if (other.collider.name == "WallRight" || other.collider.name == "WallLeft")
         {
+            masterScript.GetComponent<ScoringScript>().UpdateScoring(other.collider.name);
             //menjeda bola setelah terkena tembok
             StartCoroutine(jeda());
         }
