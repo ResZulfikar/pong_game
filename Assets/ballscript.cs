@@ -13,6 +13,8 @@ public class ballscript : MonoBehaviour
     public Animator anim;
 
     public GameObject masterScript;
+    
+    public AudioSource hitEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -32,16 +34,16 @@ public class ballscript : MonoBehaviour
     }
 
     //arah animasi api mengikuti pergerakan bola, karena bola merupakan parent api
-    //yg dibuah di component -> transform bagian scale
+    //yg diubah di component -> transform bagian scale
     void FixedUpdate()
     {
        if(objek1.velocity.x > 0)
         {
-            objek1.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
+            objek1.GetComponent<Transform>().localScale = new Vector3(1, 1, 1); //supaya bola bergerak ke kanan
         }
         else
         {
-            objek1.GetComponent<Transform>().localScale = new Vector3(-1, 1, 1);
+            objek1.GetComponent<Transform>().localScale = new Vector3(-1, 1, 1); //supaya bola bergerak ke kiri
         }
     }
 
@@ -52,6 +54,11 @@ public class ballscript : MonoBehaviour
             masterScript.GetComponent<ScoringScript>().UpdateScoring(other.collider.name);
             //menjeda bola setelah terkena tembok
             StartCoroutine(jeda());
+        }
+        //audio bola tersentuh
+        if(other.collider.tag == "Player")
+        {
+            hitEffect.Play();
         }
     }
 

@@ -19,7 +19,8 @@ public class KananMovement : MonoBehaviour
         //pergerakan raket
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1) * speed;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1) * speed; //atribut vector2(posisi x, posisi y) 
+                                                                              //artinya raket hanya bergerak di sumbu y
         } else if (Input.GetKey(KeyCode.DownArrow))
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1) * speed;
